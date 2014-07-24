@@ -135,7 +135,9 @@ class UUIDField(Field):
             return None
         # attempt to parse a UUID including cases in which value is a UUID
         # instance already to be able to get our StringUUID in.
-        return StringUUID(smart_unicode(value), hyphenate=self.hyphenate)
+        #return StringUUID(smart_unicode(value), hyphenate=self.hyphenate)
+        # and return the __unicode__ representation of the StringUUID instance
+        return StringUUID(smart_unicode(value), hyphenate=self.hyphenate).__unicode__()
 
     def formfield(self, **kwargs):
         defaults = {
